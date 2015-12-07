@@ -18,12 +18,27 @@
     #or {
       margin-left: 0px;
     }
+    body { padding-top: 70px; }
+    #hot-link {
+      float: right;
+    }
+    .panel-h2 {
+      margin-top: 0;
+    }
+    .question-card {
+      margin-top: 30px;
+    }
+    .question-ava {
+      width: 100px;
+      height: 100px;
+    }
   </style>
 </head>  
 <body>
 
   
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsed-part-of-the-navbar" aria-expanded="false">
@@ -44,12 +59,69 @@
       <p class="navbar-text" id="or">or</p>
       
       <button type="button" class="btn btn-default navbar-btn">Ask!</button> 
-    
+      <p class="navbar-text navbar-right"><a class="navbar-link" href="#">Log out</a></p>
       <p class="navbar-text navbar-right">Logged in as <a href="#" class="navbar-link">Vasya Pupkin</a></p>
       <img src="ava.jpg" class="navbar-right navbar-ava">
+      
     </div>
   </div>
+  </div>
 </nav>
+  <div class="row container-fluid">
+    <div class="col-md-8">
+      
+      <div class="blog-header">
+      <h1 class="blog-title">New questions <small><a href="#" id="hot-link">Hot questions</a></small></h1>
+      </div>
+      
+      <div class="panel panel-default question-card">
+        <div class="panel-body">
+            <div class=row>
+              <div class="col-md-3">
+                <img src="ava.jpg" class="question-ava">
+              </div>
+              <div class="col-md-9">
+                <h2 class="panel-h2">How to build a moon park?</h2>
+              <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                </div>
+              </div>
+          </div>
+      </div>
+      
+  <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+    <h2>Popular tags</h2>
+    <p><a href="#">Girls</a>, <a href="#" class="">Girls</a>, <a href="#">Girls</a>, <a href="#">Girls</a>, <a href="#">Girls</a>, <a href="#">Girls</a></p>
+    <h2>Popular users</h2>
+      <ol>
+        <li><a href="#">Vasya Pupkin</a></li>
+        <li><a href="#">Samka Bogomola</a></li>
+        <li><a href="#">I love ponies</a></li>
+        <li><a href="#">The Teapot</a></li>
+        <li><a href="#">Ololoshenka</a></li>
+      </ol>
+    </div>
+  </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
