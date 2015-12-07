@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w2&l*))tp^132d2o!25hceoa6ch3ct-k_6ew@70+1bve488wri'
-
+SECRET_KEY = open(os.path.join(BASE_DIR, '../secret_key.txt'), 'r').read()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -100,5 +99,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/DKolodzey/repos/track/1sem/web/askpupkin/collected_static/'
-STATICFILES_DIRS = ('/Users/DKolodzey/repos/track/1sem/web/askpupkin/src/static/', )
+STATIC_ROOT = os.path.join(BASE_DIR, '../collected_static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
