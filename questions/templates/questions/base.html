@@ -12,16 +12,16 @@
 	</head>
 	<body>
 		{% include "questions/navbar.html" %}
-		<div class="row container-fluid">
-		<div class="col-md-1"></div> <!-- The left margin -->
-		<div class="col-md-7">
-		{% block content %}
-		{% endblock %}
+		<div class="container">
+		<div class="row">
+		<div class="col-sm-8">
+			{% block content %}
+			{% endblock %}
 		</div>
-		<div class="col-md-1"></div> <!-- The margin between the content and the navigation panel -->
-		<div class="col-md-2">
+		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 			<h2>Navigation panel</h2>
 			<p>Here will be the links to popular tags and popular users.</p>
+		</div>
 		</div>
 		<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
