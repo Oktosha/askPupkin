@@ -7,5 +7,6 @@ app_name = 'questions'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'login/', auth_views.login, name='login')
+    url(r'login/', auth_views.login, name='login'),
+    url(r'logout/', views.logout, name='logout')
 ]

@@ -5,13 +5,20 @@
 		<a href="{% url 'questions:index' %}" class="navbar-brand">AskPupkin</a>
 		
 
-		<p class="navbar-text navbar-right">
-			{% if user.is_authenticated %}
-				Logged in as {{ user.username }}
+		
+			{% if user.is_authenticated %}	
+				<p class="navbar-text navbar-right">
+					<a href="{% url 'questions:logout' %}" class="navbar-link">Log out</a>
+				</p>
+				<p class="navbar-text navbar-right">
+					Logged in as {{ user.username }}   
+				</p>
 			{% else %}
-				<a href="{% url 'questions:login' %}" class="navbar-link">Log in</a>
+				<p class="navbar-text navbar-right">
+					<a href="{% url 'questions:login' %}" class="navbar-link">Log in</a>
+				</p>
 			{% endif %}
-		</p>
+		
 	</div> <!--closing container-fluid divs-->
 	</div>
 </nav>
