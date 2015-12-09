@@ -107,3 +107,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 #More
 LOGIN_REDIRECT_URL = 'questions:index'
+LOGIN_URL = 'questions:login'
+LOGOUT_URL = 'questions:logout'
