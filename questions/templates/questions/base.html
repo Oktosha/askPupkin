@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AskPupkin</title>
+		<link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		/* Padding from the navbar fixed to the top */
+		body { 
+			padding-top: 70px; 
+		}
+	</style>
+	</head>
+	<body>
+		{% include "questions/navbar.html" %}
+		<div class="row container-fluid">
+		<div class="col-md-1"></div> <!-- The left margin -->
+		<div class="col-md-7">
+		{% block content %}
+		{% endblock %}
+		</div>
+		<div class="col-md-1"></div> <!-- The margin between the content and the navigation panel -->
+		<div class="col-md-2">
+			<h2>Navigation panel</h2>
+			<p>Here will be the links to popular tags and popular users.</p>
+		</div>
+		<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

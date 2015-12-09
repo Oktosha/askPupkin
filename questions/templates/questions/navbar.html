@@ -1,0 +1,17 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<!--Here are 2 container-fluid divs to fix margins for fixed-top navbar-->
+	<div class="container-fluid">
+	<div class="container-fluid">
+		<a href="{% url 'questions:index' %}" class="navbar-brand">AskPupkin</a>
+		
+
+		<p class="navbar-text navbar-right">
+			{% if user.is_authenticated %}
+				Logged in as {{ user.username }}
+			{% else %}
+				<a href="{% url 'questions:login' %}" class="navbar-link">Log in</a>
+			{% endif %}
+		</p>
+	</div> <!--closing container-fluid divs-->
+	</div>
+</nav>
