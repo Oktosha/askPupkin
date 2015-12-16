@@ -5,9 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from .models import Question
 
 def index(request):
-    context = {}
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
     return render(request, 'questions/index.html', context)
 
 def logout(request):
