@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import views as auth_views
+from django.contrib.auth import login, authenticate
 from . import forms
 from django.contrib.auth.models import User
+from django.contrib.auth import views as auth_views
 
 def index(request):
 	context = {}
@@ -15,8 +16,10 @@ def signup(request):
 	if request.method == 'POST':
 		form = forms.UserForm(request.POST)
 		if form.is_valid():
-			new_user = User.objects.create_user(**form.cleaned_data)
-			auth_views.login(request, new_user)
+			form.save()
+			user = authenticate(username=form.cleaned_data['username'],
+								password=form.cleaned_data['password1'])
+			login(request, user)
 			return redirect('questions:index')
 	else:
 		form = forms.UserForm()
