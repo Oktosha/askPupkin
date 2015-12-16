@@ -1,0 +1,17 @@
+{% load widget_tweaks %}
+
+{% if field.errors %}
+    <div class="form-group has-error">
+{% else %}
+    <div class="form-group">
+{% endif %}
+
+    <label class="control-label" for="{{ form.email.id_for_label }}">{{ label }}</label>
+
+    {{ field | add_class:"form-control" }}
+
+    {% for error in field.errors %}
+        <span class="help-block" role="alert">{{ error }}</span>
+    {% endfor %}
+
+</div>

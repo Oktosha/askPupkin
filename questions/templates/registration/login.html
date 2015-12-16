@@ -1,18 +1,28 @@
 {% extends "questions/base.html" %}
 {% load widget_tweaks %}
 
+
 {% block content %}
-{% if form.errors %}
-<div class="alert alert-danger" role="alert">Your username and password didn't match. Please try again.</div>
+
+{% if user.is_authenticated %}
+  <div class="alert alert-info" role="alert">
+<p>You are already logged in as <b>{{user.username}}</b>. You can relogin as somebody else.</p>
+</div>
 {% endif %}
 
 {% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
+    <div class="alert alert-warning" role="alert">
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to the <b>{{next}}</b> page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login or sign up to see the <b>{{next}}</b> page.</p>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">Your username and password didn't match. Please try again.</div>
 {% endif %}
 
 <form method="post" action="{% url 'questions:login' %}">
@@ -30,5 +40,8 @@
 <button type="submit" class="btn btn-default">Login</button>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+<p class="text-right"><a href="{% url 'questions:signup' %}{% if next %}?next={{next}}{% endif %}">
+sign up</a></p>
 
 {% endblock %}

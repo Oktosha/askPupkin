@@ -1,9 +1,40 @@
 {% extends "questions/base.html" %}
+{% load widget_tweaks %}
+{% load my_tags %}
 
 {% block content %}
-	<form method="post" action="">
-	    {% csrf_token %}
-	    {{ form }}
-	    <input type="submit" value="Create new user account" />
-	</form>
+    {% if user.is_authenticated %}
+      <div class="alert alert-info" role="alert">
+        <p>You are already logged in as <b>{{user.username}}</b>. After the sign up you will be automatically authenticated as the new user.</p>
+        </div>
+    {% endif %}
+
+    {% if next %}
+        <div class="alert alert-warning" role="alert">
+            {% if user.is_authenticated %}
+            <p>Your account doesn't have access to the <b>{{next}}</b> page. To proceed,
+            please login with an account that has access.</p>
+            {% else %}
+            <p>Please login or sign up to see the <b>{{next}}</b> page.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">Can't create user</div>
+    {% endif %}
+    <form method="post" action="">
+        {% csrf_token %}
+        
+            {% input_field form.username "Username" %}
+
+            {% input_field form.email "Email" %}
+
+            {% input_field form.password1 "Password" %}
+
+            {% input_field form.password2 "Password again" %}
+
+        <button type="submit" class="btn btn-default">Create new user account</button>
+    </form>
+    <p class="text-right"><a href="{% url 'questions:login' %}{% if next %}?next={{next}}{% endif %}">
+login</a></p>
 {% endblock %}
