@@ -1,10 +1,10 @@
 {% extends "questions/base.html" %}
+{% load my_tags %}
 {% block content %}
 	{% if latest_question_list %}
 		<h1>Latest questions</h1>
 		{% for question in latest_question_list %}
-			<h2>{{question.title}}</h2>
-			<p>{{question.text}}</p>
+			{% question_card question %}
 		{% endfor %}
 	{% else %}
 		<div class="alert alert-warning" role="alert">
