@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
+from .models import Question
 
 class UserForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -15,3 +17,8 @@ class UserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class AskForm(ModelForm):
+    class Meta:
+        model = Question
+        fields = ("title", "text")

@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Question
+from django.utils import timezone
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -18,8 +19,20 @@ def logout(request):
 
 @login_required
 def ask(request):
-    context = {}
+    redirect_to = 'questions:index'
+    if request.method == 'POST':
+        form = forms.AskForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.author = request.user
+            question.pub_date = timezone.now()
+            question.save()
+            return redirect(redirect_to)
+    else:
+        form = forms.AskForm()
+    context = {'form': form }
     return render(request, 'questions/ask.html', context)
+
 
 def signup(request):
     redirect_to = request.GET.get('next', 'questions:index')
