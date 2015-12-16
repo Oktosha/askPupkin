@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 	<div class="container-fluid">
 		<a href="{% url 'questions:index' %}" class="navbar-brand">AskPupkin</a>
-		
+		<a href="{% url 'questions:ask' %}" class="btn btn-default navbar-btn">Ask!</a>
 
 		
 			{% if user.is_authenticated %}	
