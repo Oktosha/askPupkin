@@ -6,7 +6,7 @@ def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.id, filename)
 
 class UserWithAvatar(AbstractUser):
-	avatar = models.ImageField(upload_to=user_directory_path)
+	avatar = models.ImageField(upload_to=user_directory_path, blank=True)
 
 class Question(models.Model):
 	title = models.CharField(max_length=100)

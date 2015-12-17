@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth import login, authenticate
 from . import forms
 from django.contrib.auth import views as auth_views
@@ -42,7 +43,7 @@ def signup(request):
             user = authenticate(username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password1'])
             login(request, user)
-            return HttpResponseRedirect(redirect_to)
+            return redirect(reverse(redirect_to))
     else:
         form = forms.UserForm()
     context = {'form': form }
