@@ -104,8 +104,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../collected_static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR, '../uploads')
+MEDIA_URL = '/uploads/'
 #More
 LOGIN_REDIRECT_URL = 'questions:index'
 LOGIN_URL = 'questions:login'
 LOGOUT_URL = 'questions:logout'
+
+AUTH_USER_MODEL = 'questions.UserWithAvatar'

@@ -1,3 +1,4 @@
 Django==1.8
 gunicorn==19.4.1
 django-widget-tweaks==1.4.1
+Pillow==3.0.0
