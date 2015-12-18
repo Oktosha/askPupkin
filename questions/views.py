@@ -37,7 +37,7 @@ def ask(request):
 def signup(request):
     redirect_to = request.GET.get('next', 'questions:index')
     if request.method == 'POST':
-        form = forms.UserForm(request.POST)
+        form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             user = authenticate(username=form.cleaned_data['username'],

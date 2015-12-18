@@ -22,7 +22,7 @@
     {% if form.errors %}
         <div class="alert alert-danger" role="alert">Can't create user</div>
     {% endif %}
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
         
             {% input_field form.username "Username" %}
@@ -32,6 +32,8 @@
             {% input_field form.password1 "Password" %}
 
             {% input_field form.password2 "Password again" %}
+
+            {% input_field form.avatar "Avatar" %}
 
         <button type="submit" class="btn btn-default">Create new user account</button>
     </form>
