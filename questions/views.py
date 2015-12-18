@@ -43,7 +43,7 @@ def signup(request):
             user = authenticate(username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password1'])
             login(request, user)
-            return redirect(reverse(redirect_to))
+            return redirect(redirect_to)
     else:
         form = forms.UserForm()
     context = {'form': form }
