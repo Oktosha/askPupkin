@@ -3,7 +3,10 @@
 <div class="container-fluid">
 <div class="row">
 	<div class="col-sm-3">
-		<p class="text-center">{{question.author.username}} <br/> asked <br/> {{question.pub_date}}</p>
+		<p class="text-center"><b>{{question.author.username}}</b> asks </p>
+		{% if question.author.avatar %}
+		<p class="text-center"><img src="{{ question.author.avatar.url }}" class="question-ava"></p>
+		{% endif %}
 	</div>
 	<div class="col-sm-9">
 		<h2 class="panel-h2">{{question.title}}</h2>
