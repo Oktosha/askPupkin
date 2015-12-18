@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>AskPupkin</title>
-		<link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<style>
-		/* Padding from the navbar fixed to the top */
-		body { 
-			padding-top: 70px; 
-		}
-		.panel-h2 {
-	    	margin-top: 0;
-	    }
-	</style>
-	</head>
-	<body>
-		{% include "questions/navbar.html" %}
-		<div class="container">
-		<div class="row">
-		<div class="col-sm-8">
-			{% block content %}
-			{% endblock %}
-		</div>
-		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-			<h2>Navigation panel</h2>
-			<p>Here will be the links to popular tags and popular users.</p>
-		</div>
-		</div>
-		</div>
-		<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	</body>
+    <head>
+        <title>AskPupkin</title>
+        <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        /* Padding from the navbar fixed to the top */
+        body { 
+            padding-top: 70px; 
+        }
+        .panel-h2 {
+            margin-top: 0;
+        }
+        .navbar-ava {
+            padding: 5px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    </head>
+    <body>
+        {% include "questions/navbar.html" %}
+        <div class="container">
+        <div class="row">
+        <div class="col-sm-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <h2>Navigation panel</h2>
+            <p>Here will be the links to popular tags and popular users.</p>
+        </div>
+        </div>
+        </div>
+        <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
 </html>

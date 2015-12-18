@@ -13,6 +13,9 @@
 				<p class="navbar-text navbar-right">
 					Logged in as {{ user.username }}   
 				</p>
+				{% if user.avatar %}
+					<img src="{{ user.avatar.url }}" class="navbar-right navbar-ava">
+				{% endif %}
 			{% else %}
 				<p class="navbar-text navbar-right">
 					<a href="{% url 'questions:login' %}{% if next %}?next={{next}}{% endif %}" class="navbar-link">Log in</a>
