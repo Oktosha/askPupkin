@@ -9,7 +9,7 @@
 		{% endif %}
 	</div>
 	<div class="col-sm-9">
-		<h2 class="panel-h2">{{question.title}}</h2>
+		<a href="{{ question.get_absolute_url }}"><h2 class="panel-h2">{{question.title}}</h2></a>
 		<p>{{question.text}}</p>
 	</div>
 </div>
