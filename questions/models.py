@@ -15,4 +15,13 @@ class Question(models.Model):
 	author = models.ForeignKey(UserWithAvatar)
 
 	def __str__(self):
-		return self.author.__str__() + ": " + self.title
+		return self.author.__str__() + "asks " + self.title
+
+class Answer(models.Model):
+	text = models.TextField()
+	author = models.ForeignKey(UserWithAvatar)
+	pub_date = models.DateTimeField('date published')
+	question = models.ForeignKey(Question)
+	def __str__(self):
+		return self.author.__str__() + "answers " + self.text[:50]
+
