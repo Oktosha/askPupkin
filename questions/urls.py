@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'login/', auth_views.login, name='login'),
     url(r'logout/', views.logout, name='logout'),
     url(r'signup/', views.signup, name='signup'),
-    url(r'ask/', views.ask, name='ask')
+    url(r'ask/', views.ask, name='ask'),
+    url(r'questions/(?P<question_id>[0-9]+)/$', views.question, name='question')
 ]

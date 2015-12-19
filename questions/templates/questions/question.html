@@ -1,0 +1,8 @@
+{% extends "questions/base.html" %}
+{% load my_tags %}
+{% block content %}
+	{% question_card question %}
+	{% for answer in answers %}
+		{% answer_card answer %}
+	{% endfor %}
+{% endblock %}

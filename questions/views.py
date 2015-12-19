@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login, authenticate
 from . import forms
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from .models import Question
+from .models import Question, Answer
 from django.utils import timezone
 
 def index(request):
@@ -16,6 +16,12 @@ def index(request):
 def logout(request):
     auth_views.logout(request)
     return redirect('questions:index')
+
+def question(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    answers = Answer.objects.filter(question=question)
+    context = {'question': question, 'answers': answers }
+    return render(request, 'questions/question.html', context)
 
 @login_required
 def ask(request):

@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="container-fluid">
+<div class="row">
+	<div class="col-sm-3">
+		<p class="text-center"><b>{{answer.author.username}}</b> answers </p>
+		{% if answer.author.avatar %}
+		<p class="text-center"><img src="{{ answer.author.avatar.url }}" class="question-ava"></p>
+		{% endif %}
+	</div>
+	<div class="col-sm-9">
+		<p>{{answer.text}}</p>
+	</div>
+</div>
+</div>
+</div>
+</div>
