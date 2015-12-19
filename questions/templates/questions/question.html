@@ -1,8 +1,27 @@
 {% extends "questions/base.html" %}
 {% load my_tags %}
 {% block content %}
-	{% question_card question %}
+	<div class="panel panel-default">
+	<div class="panel-body">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-sm-3">
+		<p class="text-center"><b>{{question.author.username}}</b> asks </p>
+		{% if question.author.avatar %}
+		<p class="text-center"><img src="{{ question.author.avatar.url }}" class="question-ava"></p>
+		{% endif %}
+	</div>
+	<div class="col-sm-9">
+		<h2 class="panel-h2">{{question.title}}</h2>
+		<p>{{question.text}}</p>
+	</div>
+	</div>
+	</div>
+	</div>
+	<ul class="list-group">
 	{% for answer in answers %}
-		{% answer_card answer %}
+		<li class="list-group-item">{% answer_card answer %}</li>
 	{% endfor %}
+	</ul>
+	</div>
 {% endblock %}
