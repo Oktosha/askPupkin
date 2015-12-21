@@ -52,6 +52,7 @@ class Answer(models.Model):
     author = models.ForeignKey(UserWithAvatar)
     pub_date = models.DateTimeField('date published')
     question = models.ForeignKey(Question)
+    is_right = models.BooleanField(default=False)
     def __str__(self):
         return self.author.__str__() + " answers " + self.text[:50]
 
