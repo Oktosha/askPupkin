@@ -3,7 +3,11 @@
 <div class="container-fluid">
 <div class="row">
 	<div class="col-sm-3">
-		<p class="text-center"><b>{{question.author.username}}</b> asks </p>
+		<p class="text-center">
+			<a href="{{ question.author.get_absolute_url }}"> 
+				{{ question.author.username }}
+			</a> asks 
+		</p>
 		{% if question.author.avatar %}
 		<p class="text-center"><img src="{{ question.author.avatar.url }}" class="question-ava"></p>
 		{% endif %}
@@ -12,6 +16,8 @@
 		{% for tag in tags %}
 			<p><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></p>
 		{% endfor %}
+		<p>{{ question.pub_date.date }}</p>
+		<p>{{ question.pub_date.time }}</p>
 	</div>
 	<div class="col-sm-9">
 		<a href="{{ question.get_absolute_url }}"><h2 class="panel-h2">{{question.title}}</h2></a>
