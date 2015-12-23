@@ -1,5 +1,6 @@
 from django import template
 from questions.models import Answer, Tag
+from django.db.models import Count
 
 register = template.Library()
 
@@ -21,3 +22,8 @@ def question_list(questions):
 @register.inclusion_tag('questions/answercard.html')
 def answer_card(answer):
     return { 'answer': answer }
+
+@register.inclusion_tag('questions/tagcloud.html')
+def popular_tags():
+    tags = Tag.objects.annotate(n_questions=Count('question')).order_by('n_questions').reverse()[:20]
+    return { 'tags': tags }

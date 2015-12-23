@@ -1,0 +1,3 @@
+{% for tag in tags %}
+	<a href="{{ tag.get_absolute_url}}">{{tag.name}}</a>&nbsp;
+{% endfor %}

@@ -45,8 +45,9 @@
             {% endblock %}
         </div>
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-            <h2>Navigation panel</h2>
-            <p>Here will be the links to popular tags and popular users.</p>
+            {% load my_tags %}
+            <h2>Popular tags</h2>
+            {% popular_tags %}
         </div>
         </div>
         </div>
