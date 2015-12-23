@@ -1,6 +1,6 @@
 {% extends "questions/base.html" %}
 {% load my_tags %}
 {% block content %}
-	<h1>Latest questions</h1>
+	<h1 class="my-page-header">Latest questions<small class="my-page-subheader"><a href="{% url 'questions:hot' %}">Hot questions</a></small></h1>
 	{% question_list latest_question_list %}
 {% endblock %}
