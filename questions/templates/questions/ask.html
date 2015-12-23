@@ -6,6 +6,9 @@
     {% csrf_token %}
     {% input_field form.title "Title" %}
     {% input_field form.text "Text" %}
+    {% input_field form.tags "Tags" %}
+    <p class="text-right">Tag should constist of numbers and lovercase latin letters</p>
+    <p class="text-right">Separate tags by whitespaces</p>
     <button type="submit" class="btn btn-default">Ask!</button>
 </form>
 

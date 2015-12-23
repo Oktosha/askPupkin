@@ -34,6 +34,7 @@ def ask(request):
             question.author = request.user
             question.pub_date = timezone.now()
             question.save()
+            form.save_tags(question)
             return redirect(redirect_to)
     else:
         form = forms.AskForm()
