@@ -1,0 +1,10 @@
+{% extends "questions/base.html" %}
+
+{% block content %}
+	<h1>{{ user.username }}</h1>
+	{% if user.avatar %}
+	<p class="text-center"><img src="{{ user.avatar.url }}" class="question-ava"></p>
+	{% endif %}
+	<p>Asked {{ n_questions }} questions</p>
+	<p>Answered {{ n_answers }} times</p>
+{% endblock %}

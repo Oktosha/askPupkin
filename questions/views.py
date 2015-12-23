@@ -5,7 +5,7 @@ from . import forms
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from .models import Question, Answer
+from .models import Question, Answer, UserWithAvatar
 from django.utils import timezone
 
 def index(request):
@@ -57,3 +57,10 @@ def signup(request):
     if next:
         context['next'] = next
     return render(request, 'registration/signup.html', context)
+
+def user(request, user_id):
+    user = get_object_or_404(UserWithAvatar, pk=user_id)
+    n_questions = Question.objects.filter(author=user).count()
+    n_answers = Answer.objects.filter(author=user).count()
+    context = {"user": user, "n_questions": n_questions, "n_answers": n_answers}
+    return render(request, 'questions/user.html', context)

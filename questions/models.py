@@ -9,6 +9,9 @@ def user_directory_path(instance, filename):
 
 class UserWithAvatar(AbstractUser):
     avatar = models.ImageField(upload_to=user_directory_path, blank=True)
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('questions:user', args=[str(self.id)])
 
 class Tag(models.Model):
     name = models.CharField(max_length=25)
