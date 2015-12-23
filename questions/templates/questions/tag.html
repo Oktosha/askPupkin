@@ -1,0 +1,15 @@
+{% extends "questions/base.html" %}
+{% load my_tags %}
+{% block content %}
+	<h1>Questions by tag <b>{{ tag.name }}</b></h1>
+	{% if questions %}
+		{% for question in questions %}
+			{% question_card question %}
+		{% endfor %}
+	{% else %}
+		<div class="alert alert-warning" role="alert">
+		<p>No questions available :( Do you want to be the first to <a href="{% url 'questions:ask' %}">ask</a>?</p>
+		</div>
+	{% endif %}
+
+{% endblock %}

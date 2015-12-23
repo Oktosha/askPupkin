@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'signup/', views.signup, name='signup'),
     url(r'ask/', views.ask, name='ask'),
     url(r'questions/(?P<question_id>[0-9]+)/$', views.question, name='question'),
-    url(r'users/(?P<user_id>[0-9]+)/$', views.user, name='user')
+    url(r'users/(?P<user_id>[0-9]+)/$', views.user, name='user'),
+    url(r'tags/(?P<tag_name>[0-9a-zA-Z]+)/$', views.tag, name='tag'),
 ]

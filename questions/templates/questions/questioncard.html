@@ -10,7 +10,7 @@
 		<p>likes: {{n_likes}}</p>
 		<p>answers: {{n_answers}}</p>
 		{% for tag in tags %}
-			<p>{{ tag }}</p>
+			<p><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></p>
 		{% endfor %}
 	</div>
 	<div class="col-sm-9">

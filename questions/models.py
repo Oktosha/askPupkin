@@ -14,9 +14,12 @@ class UserWithAvatar(AbstractUser):
         return reverse('questions:user', args=[str(self.id)])
 
 class Tag(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25,unique=True)
     def __str__(self):
         return "[" + str(self.id) + "] " + self.name
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('questions:tag', args=[str(self.name)])
 
 class Like(models.Model):
     author = models.ForeignKey(UserWithAvatar)

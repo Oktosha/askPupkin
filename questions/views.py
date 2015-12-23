@@ -5,7 +5,7 @@ from . import forms
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from .models import Question, Answer, UserWithAvatar
+from .models import Question, Answer, UserWithAvatar, Tag
 from django.utils import timezone
 
 def index(request):
@@ -64,3 +64,9 @@ def user(request, user_id):
     n_answers = Answer.objects.filter(author=user).count()
     context = {"user": user, "n_questions": n_questions, "n_answers": n_answers}
     return render(request, 'questions/user.html', context)
+
+def tag(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    questions = Question.objects.filter(tags__id=tag.id).all()
+    context = {"tag": tag, "questions": questions}
+    return render(request, 'questions/tag.html', context)
