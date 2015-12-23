@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'questions/(?P<question_id>[0-9]+)/$', views.question, name='question'),
     url(r'users/(?P<user_id>[0-9]+)/$', views.user, name='user'),
     url(r'tags/(?P<tag_name>[0-9a-zA-Z]+)/$', views.tag, name='tag'),
+    url(r'hot/', views.hot, name='hot')
 ]

@@ -1,0 +1,6 @@
+{% extends "questions/base.html" %}
+{% load my_tags %}
+{% block content %}
+	<h1>Hottest questions</h1>
+	{% question_list questions %}
+{% endblock %}

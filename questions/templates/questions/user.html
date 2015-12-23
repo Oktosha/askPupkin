@@ -1,10 +1,13 @@
 {% extends "questions/base.html" %}
 
 {% block content %}
-	<h1>{{ user.username }}</h1>
-	{% if user.avatar %}
-	<p class="text-center"><img src="{{ user.avatar.url }}" class="question-ava"></p>
+	<h1>{{ pageuser.username }}</h1>
+	{% if pageuser.avatar %}
+	<p class="text-center"><img src="{{ pageuser.avatar.url }}" class="question-ava"></p>
 	{% endif %}
 	<p>Questions: {{ n_questions }}</p>
 	<p>Answers: {{ n_answers }}</p>
+	{% if user == pageuser %}
+		<p>It's you :)</p>
+	{% endif %}
 {% endblock %}
