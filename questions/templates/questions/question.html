@@ -20,7 +20,9 @@
 	</div>
 	<ul class="list-group">
 	{% for answer in answers %}
-		<li class="list-group-item">{% answer_card answer %}</li>
+		<li class="list-group-item {% if answer.is_right %} right-answer {% endif %}">
+			{% answer_card answer %}
+		</li>
 	{% endfor %}
 	</ul>
 	</div>
