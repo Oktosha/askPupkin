@@ -1,13 +1,13 @@
 from django.core.management.base import BaseCommand
-from questions.models import UserWithAvatar, Tag, Question
+from questions.models import UserWithAvatar, Tag, Question, Answer, Like
 from django.core.files.images import ImageFile
+from django.contrib.contenttypes.models import ContentType
 import os
 from django.utils import timezone
 
 class Command(BaseCommand):
     help = 'Fills the database with dummy data'
-    lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dictum lacinia tincidunt. Quisque scelerisque nisl sed arcu tristique, vel vestibulum magna congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor nunc id tempor gravida. Nullam non dui id felis lacinia pulvinar eu eget justo. Suspendisse luctus porttitor ultrices. Suspendisse tincidunt eleifend sapien, aliquam dapibus ligula consectetur eget. Morbi auctor justo quis arcu malesuada, eget rhoncus neque bibendum. Phasellus nec tortor ac lorem auctor condimentum. Duis venenatis felis eget ex finibus, viverra interdum sem vulputate. Fusce bibendum placerat urna nec vestibulum. Maecenas aliquet hendrerit lorem sed commodo. Nullam accumsan semper enim maximus vestibulum. Aenean vel interdum leo. Donec id orci pharetra, consequat dolor nec, tristique metus. Pellentesque molestie a sem ac varius."
-
+    lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
     def create_user(self, username, avatar):
         user = UserWithAvatar.objects.create_user(username, 'dkolodzey@ya.ru', '123')
         image = ImageFile(open('../avatars/' + str(avatar) + '.jpg', 'rb'))
@@ -19,10 +19,10 @@ class Command(BaseCommand):
         tag.save()
 
     def create_question(self, name):
-        user = UserWithAvatar.objects.order_by('?')[0]
+        user = UserWithAvatar.objects.order_by('?')[:1][0]
         pub_date = timezone.now()
         title = "Could you help me with " + name + "?"
-        text = self.lorem
+        text = self.lorem * 10
         tags = Tag.objects.order_by('?')[:5]
         question = Question(author=user, pub_date=pub_date, text=text, title=title)
         question.save()
@@ -31,16 +31,38 @@ class Command(BaseCommand):
         question.save()
 
     def create_answer(self, name):
-        pass
+        question = Question.objects.order_by('?')[:1][0]
+        author = UserWithAvatar.objects.order_by('?')[:1][0]
+        pub_date = timezone.now()
+        text = self.lorem
+        answer = Answer(question=question, author=author, pub_date=pub_date, text=text)
+        answer.save()
 
     def create_like_to_question(self):
-        pass
+        question = Question.objects.order_by('?')[:1][0]
+        user = UserWithAvatar.objects.order_by('?')[:1][0]
+        ct = ContentType.objects.get_for_model(question)
+        object_id = question.id
+        like, is_created = Like.objects.get_or_create(object_id=object_id, content_type=ct,
+            author=user)
+        like.is_enabled = True
+        like.save()
 
     def create_like_to_answer(self):
-        pass
+        answer = Answer.objects.order_by('?')[:1][0]
+        user = UserWithAvatar.objects.order_by('?')[:1][0]
+        ct = ContentType.objects.get_for_model(answer)
+        object_id = answer.id
+        like, is_created = Like.objects.get_or_create(object_id=object_id, content_type=ct,
+            author=user)
+        like.is_enabled = True
+        like.save()
 
     def set_right_answers(self):
-        pass
+        for question in Question.objects.all():
+            answer = Answer.objects.filter(question=question).order_by('?')[:1][0]
+            answer.is_right = True
+            answer.save()
 
     def add_arguments(self, parser):
         parser.add_argument('n_users', type=int)

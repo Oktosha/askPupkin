@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
 def user_directory_path(instance, filename):
@@ -17,7 +17,7 @@ class Tag(models.Model):
 
 class Like(models.Model):
     author = models.ForeignKey(UserWithAvatar)
-    is_enabled = models.BooleanField()
+    is_enabled = models.BooleanField(default=False)
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
@@ -39,6 +39,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     author = models.ForeignKey(UserWithAvatar)
     tags = models.ManyToManyField(Tag)
+    likes = GenericRelation(Like)
 
     def __str__(self):
         return self.author.__str__() + " asks " + self.title
@@ -53,6 +54,7 @@ class Answer(models.Model):
     pub_date = models.DateTimeField('date published')
     question = models.ForeignKey(Question)
     is_right = models.BooleanField(default=False)
+    likes = GenericRelation(Like)
     def __str__(self):
         return self.author.__str__() + " answers " + self.text[:50]
 
