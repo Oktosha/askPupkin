@@ -13,7 +13,7 @@ class UserWithAvatar(AbstractUser):
 class Tag(models.Model):
     name = models.CharField(max_length=25)
     def __str__(self):
-        return "[" + self.id + "] " + self.name
+        return "[" + str(self.id) + "] " + self.name
 
 class Like(models.Model):
     author = models.ForeignKey(UserWithAvatar)

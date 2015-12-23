@@ -7,6 +7,11 @@
 		{% if question.author.avatar %}
 		<p class="text-center"><img src="{{ question.author.avatar.url }}" class="question-ava"></p>
 		{% endif %}
+		<p>likes: {{n_likes}}</p>
+		<p>answers: {{n_answers}}</p>
+		{% for tag in tags %}
+			<p>{{ tag }}</p>
+		{% endfor %}
 	</div>
 	<div class="col-sm-9">
 		<a href="{{ question.get_absolute_url }}"><h2 class="panel-h2">{{question.title}}</h2></a>
