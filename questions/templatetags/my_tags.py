@@ -14,6 +14,10 @@ def question_card(question):
     tags = Tag.objects.filter(question=question)
     return { 'question': question, 'n_likes':n_likes, 'n_answers': n_answers, 'tags': tags }
 
+@register.inclusion_tag('questions/questionlist.html')
+def question_list(questions):
+    return { 'questions': questions}
+    
 @register.inclusion_tag('questions/answercard.html')
 def answer_card(answer):
     return { 'answer': answer }

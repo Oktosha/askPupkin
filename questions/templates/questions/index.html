@@ -1,15 +1,6 @@
 {% extends "questions/base.html" %}
 {% load my_tags %}
 {% block content %}
-	{% if latest_question_list %}
-		<h1>Latest questions</h1>
-		{% for question in latest_question_list %}
-			{% question_card question %}
-		{% endfor %}
-	{% else %}
-		<div class="alert alert-warning" role="alert">
-		<p>No questions available :( Do you want to be the first to <a href="{% url 'questions:ask' %}">ask</a>?</p>
-		</div>
-	{% endif %}
-
+	<h1>Latest questions</h1>
+	{% question_list latest_question_list %}
 {% endblock %}
