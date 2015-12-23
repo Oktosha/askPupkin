@@ -13,7 +13,7 @@ class UserWithAvatar(AbstractUser):
 class Tag(models.Model):
     name = models.CharField(max_length=25)
     def __str__(self):
-        return self.name
+        return "[" + self.id + "] " + self.name
 
 class Like(models.Model):
     author = models.ForeignKey(UserWithAvatar)
@@ -30,7 +30,7 @@ class Like(models.Model):
         else:
             ans += " "
         ans += str(self.content_type) + " " + str(self.object_id)
-        return  ans
+        return "[" + str(self.id) + "] " + ans
 
 
 class Question(models.Model):
@@ -42,7 +42,7 @@ class Question(models.Model):
     likes = GenericRelation(Like)
 
     def __str__(self):
-        return self.author.__str__() + " asks " + self.title
+        return "[" + str(self.id) + "] " + self.author.__str__() + " asks " + self.title
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
@@ -56,5 +56,5 @@ class Answer(models.Model):
     is_right = models.BooleanField(default=False)
     likes = GenericRelation(Like)
     def __str__(self):
-        return self.author.__str__() + " answers " + self.text[:50]
+        return "[" + str(self.id) + "] " + self.author.__str__() + " answers " + self.text[:50]
 
